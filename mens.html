@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mens page</title>
+    <style>
+      #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+        width: 1000px;
+        margin: auto;
+        margin-top: 40px;
+      }
+      p {
+        color: grey;
+        font-size: 16px;
+      }
+      h1 {
+        text-align: center;
+      }
+
+      .box_view {
+        border: 15px solid white;
+        grid-gap: 10px 10px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+
+      button {
+        width: 40%;
+        border-radius: 5px;
+      }
+      p + p {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: -5px;
+        color: black;
+        font-size: 19px;
+      }
+      p > :nth-child(1) {
+        margin-left: 10px;
+        text-decoration: line-through;
+        color: rgb(162, 162, 162);
+        font-size: 16px;
+      }
+      p > :nth-child(2) {
+        margin-left: 10px;
+        color: green;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mens Page</h1>
+    <div id="container"></div>
+  </body>
+</html>
+
+<script>
+  var mensData = [
+    {
+      image_url:
+        "https://content.shop4reebok.com/static/Product-HF3794/reebok_HF3794_01.JPG.plp ",
+      Pname: "Tee",
+      name: "MEN'S REEBOK TRAINING ACTIVE MOVE TEE ",
+      price: 799,
+      strikedoffprice: 1499,
+      discount: 47,
+    },
+    {
+      image_url:
+        "https://content.shop4reebok.com/static/Product-HG5456/reebok_HG5456_1.jpg.plp",
+      Pname: "Sweat Shirt",
+      name: "MEN'S REEBOK FITNESS TRAINING  SWEATSHIRT",
+      price: 359,
+      strikedoffprice: 1799,
+      discount: 76,
+    },
+  ];
+  //₹
+  mensData.map(function (e) {
+    var box = document.createElement("div");
+    box.setAttribute("class", "box_view");
+    var productImage = document.createElement("img");
+    productImage.setAttribute("src", e.image_url);
+    var Pname = document.createElement("h2");
+    Pname.innerText = e.Pname;
+    var productDetail = document.createElement("p");
+    productDetail.innerText = e.name;
+    productDetail.style.textTransform = "Capitalize";
+    var price = document.createElement("p");
+    price.innerText = "₹"+e.price;
+    var strikePrice = document.createElement("span");
+    strikePrice.innerText = "₹"+e.strikedoffprice;
+    var discount = document.createElement("span");
+    discount.innerText = "-" + e.discount + "%";
+    price.append(strikePrice, discount);
+    var button = document.createElement("button");
+    button.innerText = "Add to Cart";
+
+    box.append(productImage, Pname, productDetail, price, button);
+
+    document.querySelector("#container").append(box);
+    console.log(box);
+  });
+</script>
